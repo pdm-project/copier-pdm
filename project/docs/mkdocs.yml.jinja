@@ -1,0 +1,39 @@
+site_name: "[[ project_name ]]"
+site_description: "[[ project_description ]]"
+site_url: "https://[[ repository_namespace ]].github.io/[[ repository_name ]]"
+repo_url: "https://github.com/[[ repository_namespace ]]/[[ repository_name ]]"
+repo_name: "[[ repository_namespace ]]/[[ repository_name ]]"
+site_dir: "site"
+
+nav:
+  - Home:
+    - Overview: index.md
+    - Changelog: changelog.md
+  - Development:
+    - Contributing: contributing.md
+    - Code of Conduct: code_of_conduct.md
+
+theme:
+  name: material
+  palette:
+    primary: deep purple
+    accent: teal
+  font:
+    text: Open Sans
+    code: Fira Code
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - toc:
+      permalink: "#"
+
+plugins:
+  - search

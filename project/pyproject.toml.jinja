@@ -1,0 +1,108 @@
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
+
+[project]
+name = "[[ python_package_distribution_name ]]"
+version = {use_scm = true}
+description = "[[ project_description ]]"
+authors = [
+    {name = "[[ author_fullname ]]", email = "<[[ author_email ]]>"}
+]
+license = {text = "[[ copyright_license ]]"}
+readme = "README.md"
+package-dir = "src"
+requires-python = "[[ requires_python ]]"
+dependencies = []
+dev-dependencies = [
+    "pytest~=6.1",
+    "towncrier~=19.2",
+    "parver~=0.3"
+]
+
+dynamic = ["version", "classifiers"]
+
+classifiers = [
+    "Development Status :: 3 - Alpha"
+]
+
+[project.urls]
+Repository = "https://github.com/[[ repository_namespace ]]/[[ repository_name ]]"
+Homepage = "https://github.com/[[ repository_namespace ]]/[[ repository_name ]]"
+
+[project.optional-dependencies]
+doc = [
+    "mkdocs~=1.1",
+    "mkdocs-material~=6.2"
+]
+
+[tool.pdm.scripts]
+release = "python tasks/release.py"
+test = "pytest tests/"
+doc = {shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview"}
+lint = "pre-commit run --all-files"
+
+[tool.black]
+line-length = 88
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | tests/fixtures
+)/
+'''
+
+[tool.towncrier]
+package = "[[python_package_import_name]]"
+filename = "CHANGELOG.md"
+issue_format = "[['[#{issue}]']](https://github.com/[[ repository_namespace ]]/[[ repository_name ]]/issues/{issue})"
+directory = "news/"
+start_string = "<!-- insertion marker -->"
+title_format = "[v{version}](https://github.com/[[ repository_namespace ]]/[[ repository_name ]]/releases/tag/{version}) ({project_date})"
+template = "news/towncrier_template.md"
+underlines = "-~^"
+[% raw %]
+  [[tool.towncrier.type]]
+  directory = "feature"
+  name = "Features & Improvements"
+  showcontent = true
+
+  [[tool.towncrier.type]]
+  directory = "bugfix"
+  name = "Bug Fixes"
+  showcontent = true
+
+  [[tool.towncrier.type]]
+  directory = "doc"
+  name = "Improved Documentation"
+  showcontent = true
+
+  [[tool.towncrier.type]]
+  directory = "dep"
+  name = "Dependencies"
+  showcontent = true
+
+  [[tool.towncrier.type]]
+  directory = "removal"
+  name = "Removals and Deprecations"
+  showcontent = true
+
+  [[tool.towncrier.type]]
+  directory = "misc"
+  name = "Miscellany"
+  showcontent = true
+[% endraw %]
+[tool.isort]
+profile = "black"
+atomic = true
+skip_glob = ["*/setup.py"]
+filter_files = true
+known_first_party = ["[[python_package_import_name]]"]

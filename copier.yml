@@ -1,0 +1,107 @@
+# CONFIGURATION -------------------------
+_subdirectory: project
+_templates_suffix: .jinja
+_skip_if_exists:
+  - CHANGELOG.md
+_migrations:
+  - version: 0.1.0
+    before:
+      - rm docs/changelog.md
+      - rm docs/index.md
+      - rm docs/contributing.md
+
+# PROMPT --------------------------------
+project_name:
+  type: str
+  help: Your project name
+
+project_description:
+  type: str
+  help: Your project description
+
+author_fullname:
+  type: str
+  help: Your full name
+
+author_email:
+  type: str
+  help: Your email
+
+author_username:
+  type: str
+  help: Your username (e.g. on GitHub)
+
+repository_namespace:
+  type: str
+  help: Your repository namespace
+  default: "[[ author_username ]]"
+
+repository_name:
+  type: str
+  help: Your repository name
+  default: "[[ project_name|lower|replace('_', '-')|replace(' ', '-') ]]"
+
+copyright_holder:
+  type: str
+  help: The name of the person/entity holding the copyright
+  default: "[[ author_fullname ]]"
+
+copyright_holder_email:
+  type: str
+  help: The email of the person/entity holding the copyright
+  default: "[[ author_email ]]"
+
+copyright_date:
+  type: str
+  help: The copyright date
+  default: "2020"
+
+copyright_license:
+  type: str
+  help: Your project's license
+  default: MIT
+  choices:
+    - AFL-3.0
+    - Apache-2.0
+    - Artistic-2.0
+    - BSD-2-Clause
+    - BSD-3-Clause
+    - BSL-1.0
+    - EPL-1.0
+    - EPL-2.0
+    - EUPL-1.0
+    - EUPL-2.0
+    - AGPL-3.0
+    - GPL-2.0
+    - GPL-3.0
+    - LGPL-2.0-or-later
+    - LGPL-3.0
+    - ISC
+    - MIT
+    - MPL-2.0
+    - NCSA
+    - OFL-1.1
+    - OSL-3.0
+    - PostgreSQL
+    - Unlicense
+    - Zlib
+
+python_package_distribution_name:
+  type: str
+  help: Your Python package distribution name (for `pip install NAME`)
+  default: "[[ project_name|lower|replace('_', '-')|replace(' ', '-') ]]"
+
+python_package_import_name:
+  type: str
+  help: Your Python package import name (for `import NAME` in Python code)
+  default: "[[ project_name|lower|replace('-', '_')|replace(' ', '_') ]]"
+
+python_package_command_line_name:
+  type: str
+  help: Your CLI name if any (for use in the shell)
+  default: "[[ project_name|lower|replace('_', '-')|replace(' ', '-') ]]"
+
+requires_python:
+  type: str
+  help: The python version range your project supports
+  default: ">=3.6"
