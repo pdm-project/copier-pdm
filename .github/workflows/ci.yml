@@ -44,9 +44,9 @@ jobs:
 
       - name: Install dependencies
         run: python -m pip install -U copier
-      - name: Setup Tests(Linux)
+      - name: Setup Tests(Unix)
         run: bash tests/setup.sh
-        if: runner.os == 'Linux'
+        if: runner.os != 'Windows'
       - name: Setup Tests(Windows)
         run: ./tests/setup.ps1
         if: runner.os == 'Windows'
