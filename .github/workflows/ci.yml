@@ -52,13 +52,14 @@ jobs:
           bash tests/setup.sh
           which pdm || echo "PDM not found"
           ls -l $LD_PRELOAD || true
+          echo ${{ github.workspace }}/tests/tmp
+          ls ${{ github.workspace }}/tests/tmp
         if: runner.os != 'Windows'
       - name: Setup Tests(Windows)
         run: ./tests/setup.ps1
         if: runner.os == 'Windows'
       - name: Run Tests
         run: |
-          ls ${{ github.workspace }}/tests/tmp
           pdm use -f ${{ matrix.python-version }}
           pdm install -d
           pdm run test
