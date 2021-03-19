@@ -58,6 +58,7 @@ jobs:
         if: runner.os == 'Windows'
       - name: Run Tests
         run: |
+          ls ${{ github.workspace }}/tests/tmp
           pdm use -f ${{ matrix.python-version }}
           pdm install -d
           pdm run test
