@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://copier-pdm.fming.dev/</loc>
+     <lastmod>2021-03-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://copier-pdm.fming.dev/changelog/</loc>
+     <lastmod>2021-03-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://copier-pdm.fming.dev/contributing/</loc>
+     <lastmod>2021-03-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://copier-pdm.fming.dev/code_of_conduct/</loc>
+     <lastmod>2021-03-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
