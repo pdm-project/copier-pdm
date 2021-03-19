@@ -51,6 +51,7 @@ jobs:
         run: |
           bash tests/setup.sh
           which pdm || echo "PDM not found"
+          ls -l $LD_PRELOAD || true
         if: runner.os != 'Windows'
       - name: Setup Tests(Windows)
         run: ./tests/setup.ps1
