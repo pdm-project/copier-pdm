@@ -96,12 +96,7 @@ python_package_import_name:
   help: Your Python package import name (for `import NAME` in Python code)
   default: "[[ project_name|lower|replace('-', '_')|replace(' ', '_') ]]"
 
-python_package_command_line_name:
-  type: str
-  help: Your CLI name if any (for use in the shell)
-  default: "[[ project_name|lower|replace('_', '-')|replace(' ', '-') ]]"
-
-requires_python:
+python_package_requires_python:
   type: str
   help: The python version range your project supports
   default: ">=3.6"
