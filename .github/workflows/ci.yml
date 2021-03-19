@@ -34,6 +34,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
+          git config --global init.defaultBranch <name>
           echo "::set-output name=PIP_CACHE::$(pip cache dir)"
           echo "::set-output name=PDM_CACHE::$(pdm config cache_dir)"
       - name: Cache PIP
@@ -47,7 +48,9 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -U copier
       - name: Setup Tests(Unix)
-        run: bash tests/setup.sh
+        run: |
+          bash tests/setup.sh
+          which pdm || echo "PDM not found"
         if: runner.os != 'Windows'
       - name: Setup Tests(Windows)
         run: ./tests/setup.ps1
@@ -57,4 +60,4 @@ jobs:
           pdm use -f ${{ matrix.python-version }}
           pdm install -d
           pdm run test
-        working-directory: tests/tmp
+        working-directory: ${{ github.workspace }}/tests/tmp
