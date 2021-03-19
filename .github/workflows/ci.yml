@@ -32,6 +32,8 @@ jobs:
       - name: Set Variables
         id: set_variables
         run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           echo "::set-output name=PIP_CACHE::$(pip cache dir)"
           echo "::set-output name=PDM_CACHE::$(pdm config cache_dir)"
       - name: Cache PIP
@@ -55,3 +57,4 @@ jobs:
           pdm use -f ${{ matrix.python-version }}
           pdm install -d
           pdm run test
+        working-directory: tests/tmp
