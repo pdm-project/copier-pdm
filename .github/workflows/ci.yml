@@ -34,7 +34,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git config --global init.defaultBranch <name>
+          git config --global init.defaultBranch main
           echo "::set-output name=PIP_CACHE::$(pip cache dir)"
           echo "::set-output name=PDM_CACHE::$(pdm config cache_dir)"
       - name: Cache PIP
