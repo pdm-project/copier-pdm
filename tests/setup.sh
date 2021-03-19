@@ -12,10 +12,11 @@ echo "///////////////////////////////////////////"
 template=$(mktemp -d)
 cp -rf . $template
 
-cd $template
+pushd $template
 git add -A . || true
 git commit -m "test" || true
 git tag 99.99.99
+popd
 
 echo "Template is located at ${template}"
 echo
