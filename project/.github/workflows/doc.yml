@@ -21,7 +21,7 @@ jobs:
           architecture: "x64"
       - name: Build pages
         run: |
-          pdm install -s
+          pdm install -s doc
           cd docs && pdm run mkdocs build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
