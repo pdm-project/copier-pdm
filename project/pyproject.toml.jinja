@@ -14,11 +14,6 @@ readme = "README.md"
 package-dir = "src"
 requires-python = "[[ python_package_requires_python ]]"
 dependencies = []
-dev-dependencies = [
-    "pytest~=6.1",
-    "towncrier~=19.2",
-    "parver~=0.3"
-]
 
 dynamic = ["version", "classifiers"]
 
@@ -30,7 +25,15 @@ classifiers = [
 Repository = "https://github.com/[[ repository_namespace ]]/[[ repository_name ]]"
 Homepage = "https://github.com/[[ repository_namespace ]]/[[ repository_name ]]"
 
-[project.optional-dependencies]
+[tool.pdm]
+package-dir = "src"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest~=6.1",
+    "towncrier~=19.2",
+    "parver~=0.3"
+]
 doc = [
     "mkdocs~=1.1",
     "mkdocs-material~=6.2"
