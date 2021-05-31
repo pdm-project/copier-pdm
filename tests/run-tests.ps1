@@ -1,6 +1,6 @@
 . tests/setup.ps1
 
-pdm install -d
+pdm install
 pdm run test
 
 Pop-Location

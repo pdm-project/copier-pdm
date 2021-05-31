@@ -2,7 +2,7 @@
 
 source tests/setup.sh
 
-pdm install -d
+pdm install
 pdm run test
 
 popd
