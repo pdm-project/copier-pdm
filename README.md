@@ -2,8 +2,15 @@
 
 Copier template for PDM projects.
 
-This copier template is mainly for my own usage,
-but feel free to try it out, or fork it!
+This copier template is mainly for my own usage, but feel free to try it out, or fork it!
+
+Note that this template uses some unreleased features from the HEAD version of Copier, you have to install Copier via the VCS repo:
+
+```bash
+$ pipx install git+https://github.com/copier-org/copier.git@master#egg=copier
+# OR
+$ pip install --user git+https://github.com/copier-org/copier.git@master#egg=copier
+```
 
 ## Features
 
