@@ -32,6 +32,10 @@ The template project uses [PDM](https://pdm.fming.dev) setup, with pre-defined `
 - [black](https://github.com/psf/black)
 - [isort](https://github.com/timothycrosley/isort)
 
+### VSCode default settings
+
+The `.vscode/settings.json` will also be generated with the project, to enable Pylance auto-completions and test discovery in VSCode.
+
 ### Tests
 
 - Tests run with [pytest](https://pytest.org/)
