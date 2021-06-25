@@ -3,7 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parent.parent
+PROJECT_ROOT = Path(__file__).absolute().parent.parent
 
 
 def delete_myself() -> None:
