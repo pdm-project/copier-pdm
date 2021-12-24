@@ -4,7 +4,6 @@ build-backend = "pdm.pep517.api"
 
 [project]
 name = "{{ python_package_distribution_name }}"
-version = {use_scm = true}
 description = "{{ project_description }}"
 authors = [
     {name = "{{ author_fullname }}", email = "{{ author_email }}"}
@@ -13,7 +12,7 @@ license = {text = "{{ copyright_license }}"}
 readme = "README.md"
 requires-python = "{{ python_package_requires_python }}"
 dependencies = []
-dynamic = ["version", "classifiers"]
+dynamic = ["version"]
 
 classifiers = [
     "Development Status :: 3 - Alpha"
@@ -24,6 +23,7 @@ Repository = "https://github.com/{{ repository_namespace }}/{{ repository_name }
 Homepage = "https://github.com/{{ repository_namespace }}/{{ repository_name }}"
 
 [tool.pdm]
+version = {use_scm = true}
 package-dir = "src"
 
 [tool.pdm.dev-dependencies]

@@ -13,7 +13,7 @@ _migrations:
 _tasks:
   - git init
   - pdm install
-  - python tasks/_post_generation.py
+  - pdm run python tasks/_post_generation.py
   - git add .
 
 # PROMPT --------------------------------
