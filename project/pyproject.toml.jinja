@@ -28,14 +28,16 @@ package-dir = "src"
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "pytest~=6.1",
-    "towncrier~=19.2",
-    "parver~=0.3"
+    "pytest>=6.1",
+]
+test = [
+    "towncrier>=19.2",
+    "parver>=0.3",
 ]
 {% if build_doc %}
 doc = [
-    "mkdocs~=1.1",
-    "mkdocs-material~=6.2"
+    "mkdocs>=1.1",
+    "mkdocs-material>=6.2",
 ]
 {% endif %}
 [tool.pdm.scripts]
