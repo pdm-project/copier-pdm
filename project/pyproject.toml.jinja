@@ -8,7 +8,7 @@ description = "{{ project_description }}"
 authors = [
     {name = "{{ author_fullname }}", email = "{{ author_email }}"}
 ]
-license-expression = "{{ copyright_license }}"
+license = {text = "{{ copyright_license }}"}
 readme = "README.md"
 requires-python = "{{ python_package_requires_python }}"
 dependencies = []
@@ -43,7 +43,7 @@ doc = [
 [tool.pdm.scripts]
 release = "python -m tasks.release"
 test = "pytest tests/"
-doc = {shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview"}
+{% if build_doc %}doc = {shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview"}{% endif %}
 lint = "pre-commit run --all-files"
 
 [tool.black]

@@ -60,7 +60,7 @@ copyright_holder_email:
 copyright_date:
   type: str
   help: The copyright date
-  default: "2021"
+  default: "2022"
 
 copyright_license:
   type: str
@@ -105,7 +105,7 @@ python_package_import_name:
 python_package_requires_python:
   type: str
   help: The python version range your project supports
-  default: ">=3.6"
+  default: ">=3.7"
 
 build_doc:
   type: bool
