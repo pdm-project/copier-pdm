@@ -4,15 +4,13 @@ on:
   pull_request:
     paths-ignore:
       - 'docs/**'
-      - 'news/**'
       - '*.md'
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
-      - 'news/**'
-      - '*.md'
+
+permissions:
+  contents: write
 
 jobs:
   Testing:
@@ -50,3 +48,20 @@ jobs:
           pdm install -d
           pdm run test
         working-directory: ${{ github.workspace }}/tests/tmp
+
+  Release:
+    needs: Testing
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
