@@ -1,6 +1,6 @@
 [build-system]
-requires = ["pdm-pep517"]
-build-backend = "pdm.pep517.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [project]
 name = "{{ python_package_distribution_name }}"
@@ -15,15 +15,18 @@ dependencies = []
 dynamic = ["version"]
 
 classifiers = [
-    "Development Status :: 3 - Alpha"
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3"
 ]
 
 [project.urls]
 Repository = "https://github.com/{{ repository_namespace }}/{{ repository_name }}"
 Homepage = "https://github.com/{{ repository_namespace }}/{{ repository_name }}"
 
-[tool.pdm]
-version = {use_scm = true}
+[tool.pdm.version]
+source = "scm"
+
+[tool.pdm.build]
 package-dir = "src"
 
 [tool.pdm.dev-dependencies]
@@ -47,22 +50,41 @@ test = "pytest tests/"
 lint = "pre-commit run --all-files"
 
 [tool.black]
-line-length = 88
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-  | tests/fixtures
-)/
-'''
+line-length = 100
+target-version = ["py37", "py38", "py39", "py310"]
+
+[tool.ruff]
+line-length = 100
+select = [
+  "B",    # flake8-bugbear
+  "C4",   # flake8-comprehensions
+  "E",    # pycodestyle
+  "F",    # pyflakes
+  "PGH",  # pygrep-hooks
+  "RUF",  # ruff
+  "W",    # pycodestyle
+  "YTT",  # flake8-2020
+]
+extend-ignore = ["B018", "B019"]
+src = ["src"]
+extend-exclude = ["tests/fixtures"]
+target-version = "py37"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.isort]
+known-first-party = ["{{python_package_import_name}}"]
+
+[tool.mypy]
+follow_imports = "silent"
+ignore_missing_imports = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+namespace_packages = true
+mypy_path = "src"
+explicit_package_bases = true
 
 [tool.towncrier]
 package = "{{python_package_import_name}}"

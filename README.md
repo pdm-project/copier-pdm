@@ -28,9 +28,7 @@ The template project uses [PDM](https://pdm.fming.dev) setup, with pre-defined `
 
 [pre-commit](https://pre-commit.com/) is used for both commit hook and linting, including the following hooks:
 
-- [flake8](https://gitlab.com/pycqa/flake8)
-- [black](https://github.com/psf/black)
-- [isort](https://github.com/timothycrosley/isort)
+- [ruff](https://github.com/charliermarsh/ruff)
 
 ### VSCode default settings
 

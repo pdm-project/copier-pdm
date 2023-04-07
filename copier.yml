@@ -13,7 +13,6 @@ _migrations:
 _tasks:
   - git init
   - pdm install
-  - pdm run python tasks/_post_generation.py
   - git add .
 
 # PROMPT --------------------------------
@@ -60,7 +59,7 @@ copyright_holder_email:
 copyright_date:
   type: str
   help: The copyright date
-  default: "2022"
+  default: "2023"
 
 copyright_license:
   type: str

@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: pdm-project/setup-pdm@v2
+      - uses: actions/checkout@v3
+      - uses: pdm-project/setup-pdm@main
         with:
-          python-version: 3.8
-          architecture: "x64"
+          python-version: 3.x
+          cache: true
       - name: Build pages
         run: |
           pdm install -s doc
