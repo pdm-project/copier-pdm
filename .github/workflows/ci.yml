@@ -8,6 +8,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+    tags:
+      - '*'
 
 permissions:
   contents: write
@@ -37,11 +42,8 @@ jobs:
         run: python -m pip install -U copier
       - name: Setup Tests(Unix)
         run: bash tests/setup.sh
-
         if: runner.os != 'Windows'
-      - name: Setup Tests(Windows)
-        run: ./tests/setup.ps1
-        if: runner.os == 'Windows'
+
       - name: Run Tests
         run: |
           pdm use -f ${{ matrix.python-version }}
