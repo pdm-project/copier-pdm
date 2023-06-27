@@ -3,17 +3,6 @@ _subdirectory: project
 _templates_suffix: .jinja
 _skip_if_exists:
   - CHANGELOG.md
-_migrations:
-  - version: 0.1.0
-    before:
-      - rm docs/changelog.md
-      - rm docs/index.md
-      - rm docs/contributing.md
-
-_tasks:
-  - git init
-  - pdm install
-  - git add .
 
 # PROMPT --------------------------------
 project_name:
