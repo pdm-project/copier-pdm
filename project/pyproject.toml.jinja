@@ -30,45 +30,96 @@ source = "scm"
 package-dir = "src"
 
 [tool.pdm.dev-dependencies]
-test = [
-    "pytest>=6.1",
-]
 dev = [
     "towncrier>=19.2",
     "parver>=0.3",
+    "pytest>=6.1",
 ]
 {% if build_doc %}
 doc = [
-    "mkdocs>=1.1",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-literate-nav>=0.6.1",
     "mkdocs-material>=6.2",
+    "mkdocs-section-index>=0.3.6",
+    "mkdocs>=1.1",
+    "mkdocstrings-python>=1.1.2",
+    "mkdocstrings>=0.22.0",
 ]
 {% endif %}
 [tool.pdm.scripts]
 release = "python -m tasks.release"
 test = "pytest tests/"
-{% if build_doc %}doc = {shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview"}{% endif %}
+{% if build_doc %}doc = { shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview" }{% endif %}
 lint = "pre-commit run --all-files"
 
 [tool.black]
-line-length = 100
-target-version = ["py37", "py38", "py39", "py310"]
+line-length = 88
+target-version = ["py311"]
 
 [tool.ruff]
-line-length = 100
+line-length = 88
 select = [
-  "B",    # flake8-bugbear
-  "C4",   # flake8-comprehensions
-  "E",    # pycodestyle
-  "F",    # pyflakes
-  "PGH",  # pygrep-hooks
-  "RUF",  # ruff
-  "W",    # pycodestyle
-  "YTT",  # flake8-2020
+  # keep-sorted start
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C4",    # flake8-comprehensions
+  "COM",   # flake8-commas
+  "D",     # pydocstyle
+  "DTZ",   # flake8-datetimez
+  "E",     # pycodestyle error
+  "EXE",   # flake8-executable
+  "F",     # pyflakes
+  "FA",    # flake8-future-annotations
+  "FLY",   # flynt
+  "I",     # isort
+  "ICN",   # flake8-import-conventions
+  "INP",   # flake8-no-pep420
+  "ISC",   # flake8-implicit-str-concat
+  "N",     # pep8-naming
+  "NPY",   # numpy-specific rules
+  "PD",    # pandas-vet
+  "PERF",  # perflint
+  "PGH",   # pygrep-hooks
+  "PIE",   # flake8-pie
+  "PT",    # flake8-pytest-style
+  "PTH",   # flake8-use-pathlib
+  "PYI",   # flake8-pyi
+  "Q",     # flake8-quotes
+  "RET",   # flake8-return
+  "RSE",   # flake8-raise
+  "RUF",   # ruff-specific
+  "S",     # flake8-bandit
+  "SIM",   # flake8-simplify
+  "SLOT",  # flake8-slot
+  "T10",   # flake8-debugger
+  "TD",    # flake8-todos
+  "TID",   # flake8-tidy-imports
+  "TRY",   # tryceratops
+  "UP",    # pyupgrade
+  "W",     # pycodestyle warning
+  "YTT",   # flake8-2020
+  # keep-sorted end
 ]
-extend-ignore = ["B018", "B019"]
+extend-ignore = [
+  # keep-sorted start
+  "D203",   # one-blank-line-before-class (incompatible with D211)
+  "D213",   # multi-line-summary-second-line (incompatible with D212)
+  "PGH003", # blanket-type-ignore: Use specific rule codes when ignoring type issues (no always feasible)
+  "RET504", # unnecessary-assign: Sometimes worth doing for readability
+  "RET505", # superfluous-else-return: Currently has a bug
+  "RET506", # superfluous-else-raise: Currently has a bug
+  "S603",   # subprocess-without-shell-equals-true: Bug: https://github.com/astral-sh/ruff/issues/4045
+  "SIM300", # yoda-conditions: Doesn't work well with Pandas
+  "TD002",  # missing-todo-author: Not for prototyping
+  "TD003",  # missing-todo-link: Not for prototyping
+  "TRY003", # raise-vanilla-args: Not for prototyping, not always an error
+  # keep-sorted end
+]
 src = ["src"]
-extend-exclude = ["tests/fixtures"]
-target-version = "py37"
+extend-exclude = ["tests/fixtures", "__pycache__"]
+target-version = "py311"
+namespace-packages = [{% if build_doc %}"docs", {% endif %}"tasks"]
 
 [tool.ruff.mccabe]
 max-complexity = 10
@@ -137,3 +188,6 @@ known_first_party = ["{{python_package_import_name}}"]
 filterwarnings = [
   "ignore::DeprecationWarning"
 ]
+
+ [tool.ruff.pydocstyle]
+ convention = "numpy"
