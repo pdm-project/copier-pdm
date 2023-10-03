@@ -44,13 +44,13 @@ Make below requirements are met to use the copier template:
 ## Quick Start
 
 ```bash
-copier "https://github.com/pdm-project/copier-pdm.git" <project_name>
+copier copy --trust "https://github.com/dmcc/copier-pdm.git" <project_name>
 ```
 
 Or even shorter:
 
 ```bash
-copier "gh:pdm-project/copier-pdm" <project_name>
+copier copy --trust "gh:dmcc/copier-pdm" <project_name>
 ```
 
 See the [documentation](https://copier-pdm.fming.dev) for more details.
