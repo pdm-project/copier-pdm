@@ -16,10 +16,9 @@ venv/
 env/
 
 .pdm.toml
+.pdm-python
 __pypackages__/
-
-.nox/
-.tox/
 
 .vscode/
 .idea/
+*.sw[op]

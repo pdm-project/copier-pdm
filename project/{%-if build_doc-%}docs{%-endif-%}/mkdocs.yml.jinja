@@ -12,6 +12,7 @@ nav:
   - Development:
     - Contributing: contributing.md
     - Code of Conduct: code_of_conduct.md
+  - Code Reference: reference/
 
 theme:
   name: material
@@ -28,6 +29,12 @@ markdown_extensions:
   - pymdownx.emoji
   - pymdownx.magiclink
   - pymdownx.snippets:
+      base_path:
+      - docs
+      - ../CHANGELOG.md
+      - ../CODE_OF_CONDUCT.md
+      - ../CONTRIBUTING.md
+      - ../README.md
       check_paths: true
   - pymdownx.superfences
   - pymdownx.tabbed
@@ -36,4 +43,20 @@ markdown_extensions:
       permalink: "#"
 
 plugins:
-  - search
+- search
+- gen-files:
+    scripts:
+    - gen_ref_pages.py
+- section-index
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        paths: ["../src"]
+        options:
+          docstring_style: numpy
+- literate-nav:
+    nav_file: SUMMARY.md
+
+watch:
+  - "../src"

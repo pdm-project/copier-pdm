@@ -18,7 +18,7 @@ def bump_version(pre=None, major=False, minor=False, patch=True):
         patch = True
     if len([v for v in [major, minor, patch] if v]) != 1:
         print(
-            "Only one option should be provided among " "(--major, --minor, --patch)",
+            "Only one option should be provided among (--major, --minor, --patch)",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -26,7 +26,8 @@ def bump_version(pre=None, major=False, minor=False, patch=True):
     if not pre:
         version_idx = [major, minor, patch].index(True)
         version = current_version.bump_release(index=version_idx).replace(
-            pre=None, post=None
+            pre=None,
+            post=None,
         )
     else:
         version = current_version.bump_pre(pre)
@@ -45,7 +46,7 @@ def release(dry_run=False, commit=True, pre=None, major=False, minor=False, patc
         if commit:
             subprocess.check_call(["git", "commit", "-m", f"Release {new_version}"])
             subprocess.check_call(
-                ["git", "tag", "-a", new_version, "-m", f"v{new_version}"]
+                ["git", "tag", "-a", new_version, "-m", f"v{new_version}"],
             )
             subprocess.check_call(["git", "push"])
             subprocess.check_call(["git", "push", "--tags"])

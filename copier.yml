@@ -93,7 +93,7 @@ python_package_import_name:
 python_package_requires_python:
   type: str
   help: The python version range your project supports
-  default: ">=3.7"
+  default: ">=3.11"
 
 build_doc:
   type: bool
