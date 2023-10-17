@@ -2,9 +2,7 @@
 
 Copier template for PDM projects.
 
-This copier template is mainly for my own usage, but feel free to try it out, or fork it!
-
-You need to install [Copier](https://copier.readthedocs.io/en/stable/) first.
+This copier template is mainly for my own usage, but feel free to try it out, or fork it! Original version is [pdm-project/copier-pdm](https://github.com/pdm-project/copier-pdm).
 
 ## Features
 
@@ -15,7 +13,7 @@ The template project uses [PDM](https://pdm.fming.dev) setup, with pre-defined `
 ### Documentation and changelog
 
 - Documentation is built with [MkDocs](https://github.com/mkdocs/mkdocs)
-  ([Material theme](https://github.com/squidfunk/mkdocs-material)
+  ([Material theme](https://github.com/squidfunk/mkdocs-material))
 - Changelog is auto-generated from the fragments under `news` directory, with the power of [towncrier](https://pypi.org/project/towncrier/)
 
 ### Pre-commit and linter
@@ -23,15 +21,12 @@ The template project uses [PDM](https://pdm.fming.dev) setup, with pre-defined `
 [pre-commit](https://pre-commit.com/) is used for both commit hook and linting, including the following hooks:
 
 - [ruff](https://github.com/charliermarsh/ruff)
-
-### VSCode default settings
-
-The `.vscode/settings.json` will also be generated with the project, to enable Pylance auto-completions and test discovery in VSCode.
+- [keep-sorted](https://github.com/google/keep-sorted)
+- [do-not-submit]([https://github.com/jlebar/pre-commit-hooks](https://github.com/jlebar/pre-commit-hooks/blob/master/check_do_not_submit.py))
 
 ### Tests
 
 - Tests run with [pytest](https://pytest.org/)
-- Multi-environment testing powered by [nox](https://nox.thea.codes/)
 
 ## Requirements
 
@@ -43,14 +38,14 @@ Make below requirements are met to use the copier template:
 
 ## Quick Start
 
-```bash
-copier copy --trust "https://github.com/dmcc/copier-pdm.git" <project_name>
-```
+1. Install [Copier](https://copier.readthedocs.io/en/stable/):
 
-Or even shorter:
+    ```bash
+    pip install --user copier
+    ```
 
-```bash
-copier copy --trust "gh:dmcc/copier-pdm" <project_name>
-```
+2. Set up a new project with this template:
 
-See the [documentation](https://copier-pdm.fming.dev) for more details.
+    ```bash
+    copier copy --trust "gh:dmcc/copier-pdm" <project_name>
+    ```
