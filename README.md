@@ -22,11 +22,11 @@ The template project uses [PDM](https://pdm.fming.dev) setup, with pre-defined `
 
 - [ruff](https://github.com/charliermarsh/ruff)
 - [keep-sorted](https://github.com/google/keep-sorted)
-- [do-not-submit]([https://github.com/jlebar/pre-commit-hooks](https://github.com/jlebar/pre-commit-hooks/blob/master/check_do_not_submit.py))
+- [do-not-submit](https://github.com/jlebar/pre-commit-hooks/blob/master/check_do_not_submit.py)
 
 ### Tests
 
-- Tests run with [pytest](https://pytest.org/)
+- Tests run with [pytest](https://pytest.org/). GitHub Actions provide matrix support.
 
 ## Requirements
 
@@ -35,17 +35,27 @@ Make below requirements are met to use the copier template:
 - Python 3
 - Git
 - [Copier](https://copier.readthedocs.io/en/stable/)
+- [PDM](https://pdm.fming.dev)
 
 ## Quick Start
 
-1. Install [Copier](https://copier.readthedocs.io/en/stable/):
+1. Install [PDM](https://pdm.fming.dev) with [Copier](https://copier.readthedocs.io/en/stable/) support:
 
     ```bash
-    pip install --user copier
+    pip install --user "pdm[copier]"
     ```
 
-2. Set up a new project with this template:
+2. You can use [PDM](https://pdm.fming.dev) to initialize a project directly from the template.
+   First, make a directory for the project, then inside that directory run:
 
     ```bash
-    copier copy --trust "gh:dmcc/copier-pdm" <project_name>
+    pdm init --copier "gh:dmcc/copier-pdm"
     ```
+
+Alternatively:
+
+2. Set up a new project with this template: (this will create the project directory for you)
+
+   ```bash
+   copier copy --trust "gh:dmcc/copier-pdm" <project_name>
+   ```
