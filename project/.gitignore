@@ -1,3 +1,4 @@
+# General Python ignores
 *.py[cod]
 __pycache__/
 dist/
@@ -7,18 +8,21 @@ build/
 pip-wheel-metadata/
 .pytest_cache/
 .mypy_cache/
+.venv/
+.ruff_cache/
 
+# mkdocs specific
 docs/_build/
 docs/site
 
-.venv/
-venv/
-env/
-
+# PDM specific
 .pdm.toml
 .pdm-python
+.pdm-build/
 __pypackages__/
 
+# Editor cruft
 .vscode/
 .idea/
+# Vim swap files
 *.sw[op]
