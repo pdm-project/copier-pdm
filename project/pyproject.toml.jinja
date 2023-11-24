@@ -121,8 +121,8 @@ extend-exclude = ["tests/fixtures", "__pycache__"]
 target-version = "py311"
 namespace-packages = [{% if build_doc %}"docs", {% endif %}"tasks"]
 
-[tool.ruff.mccabe]
-max-complexity = 10
+[tool.ruff.per-file-ignores]
+"**/tests/*" = ["S101"]  # Allow using asserts in tests
 
 [tool.ruff.isort]
 known-first-party = ["{{python_package_import_name}}"]
