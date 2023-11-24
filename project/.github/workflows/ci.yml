@@ -5,7 +5,7 @@ on:
     paths-ignore:
       - "docs/**"
       - "news/**"
-      - "*.md"
+      - "**.md"
   push:
     branches:
       - master
@@ -13,25 +13,33 @@ on:
     paths-ignore:
       - "docs/**"
       - "news/**"
-      - "*.md"
+      - "**.md"
 
 jobs:
   Testing:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, '3.10']
+        python-version: ['3.7', '3.8', '3.9', '3.10']
         os: [ubuntu-latest, macOS-latest, windows-latest]
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up PDM
-        uses: pdm-project/setup-pdm@main
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: true
-
-      - name: Install dependencies
-        run: pip install nox
-      - name: Run Tests
-        run: nox -s test-${{ matrix.python-version }}
+        steps:
+          - name: Checkout branch
+            uses: actions/checkout@v3
+    
+          - name: Set up PDM
+            uses: pdm-project/setup-pdm@main
+            with:
+              python-version: ${{ matrix.python-version }}
+              cache: true
+    
+          - name: Setup ssh key
+            uses: webfactory/ssh-agent@v0.5.1
+            with:
+              ssh-private-key: ${{ secrets.SSH_KEY }}
+    
+          - name: Install dependencies
+            run: pdm install
+    
+          - name: Run Tests
+            run: pdm test
