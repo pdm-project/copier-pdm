@@ -19,11 +19,13 @@ jobs:
         run: |
           pip install build
           python -m build
+
       - name: Test Build
         run: |
           python3 -m venv fresh_env
           . fresh_env/bin/activate
           pip install dist/*.whl
+
       - name: Upload to Pypi
         run: |
           pip install twine
