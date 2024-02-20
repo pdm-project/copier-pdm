@@ -1,3 +1,6 @@
+# General Mac OS X
+*.DS_Store
+
 # General Python ignores
 *.py[cod]
 __pycache__/
