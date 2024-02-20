@@ -45,17 +45,17 @@ Make below requirements are met to use the copier template:
     pip install --user "pdm[copier]"
     ```
 
-2. You can use [PDM](https://pdm.fming.dev) to initialize a project directly from the template.
-   First, make a directory for the project, then inside that directory run:
-
-    ```bash
-    pdm init --copier "gh:dmcc/copier-pdm"
-    ```
-
-Alternatively:
-
 2. Set up a new project with this template: (this will create the project directory for you)
 
    ```bash
    copier copy --trust "gh:dmcc/copier-pdm" <project_name>
    ```
+
+3. Install project dependencies:
+
+  ```bash
+  cd <project_name>
+  git init
+  pdm install
+  ```
+
