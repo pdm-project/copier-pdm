@@ -21,6 +21,8 @@ theme:
   font:
     text: Open Sans
     code: Fira Code
+  features:
+    - content.code.copy
 
 markdown_extensions:
   - admonition
