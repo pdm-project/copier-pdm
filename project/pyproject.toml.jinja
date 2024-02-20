@@ -11,7 +11,8 @@ authors = [
 license = {text = "{{ copyright_license }}"}
 readme = "README.md"
 requires-python = "{{ python_package_requires_python }}"
-dependencies = []
+dependencies = [ # keep-sorted start
+] # keep-sorted end
 dynamic = ["version"]
 
 classifiers = [
@@ -30,13 +31,14 @@ source = "scm"
 package-dir = "src"
 
 [tool.pdm.dev-dependencies]
-dev = [
+dev = [ # keep-sorted start
     "towncrier>=19.2",
     "parver>=0.3",
     "pytest>=6.1",
-]
+    "pytest-coverage>=0.0",
+] # keep-sorted end
 {% if build_doc %}
-doc = [
+doc = [ # keep-sorted start
     "mkdocs-gen-files>=0.5.0",
     "mkdocs-literate-nav>=0.6.1",
     "mkdocs-material>=6.2",
@@ -44,13 +46,22 @@ doc = [
     "mkdocs>=1.1",
     "mkdocstrings-python>=1.1.2",
     "mkdocstrings>=0.22.0",
-]
+] # keep-sorted end
 {% endif %}
 [tool.pdm.scripts]
+#
+# Standard development scripts.
+#
+test.help = "Run tests in current environment"
+test.cmd = "pytest --cov=src tests/"
+
+{% if build_doc %}doc.help = "Start the dev server for doc preview"
+doc.shell = "cd docs && mkdocs serve -a localhost:8010"
+{% endif %}
+lint.help = "Run linters over all files"
+lint.cmd = "pre-commit run --all-files"
+
 release = "python -m tasks.release"
-test = "pytest tests/"
-{% if build_doc %}doc = { shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview" }{% endif %}
-lint = "pre-commit run --all-files"
 
 [tool.black]
 line-length = 88
@@ -109,6 +120,7 @@ extend-ignore = [
   "RET504", # unnecessary-assign: Sometimes worth doing for readability
   "RET505", # superfluous-else-return: Currently has a bug
   "RET506", # superfluous-else-raise: Currently has a bug
+  "S110",   # try-except-pass: Duplicate of bare-except (E722) with less detailed help page
   "S603",   # subprocess-without-shell-equals-true: Bug: https://github.com/astral-sh/ruff/issues/4045
   "SIM300", # yoda-conditions: Doesn't work well with Pandas
   "TD002",  # missing-todo-author: Not for prototyping
