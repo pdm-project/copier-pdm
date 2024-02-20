@@ -58,4 +58,3 @@ Make below requirements are met to use the copier template:
   git init
   pdm install
   ```
-
